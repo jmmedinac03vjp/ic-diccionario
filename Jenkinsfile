@@ -1,13 +1,13 @@
 pipeline {
     agent {
-        docker { image 'debian'
+        docker { image 'ubuntu'
         args '-u root:root'
         }
     }
     stages {
         stage('Clone') {
             steps {
-                git branch:'master',url:'https://github.com/josedom24/ic-travis-diccionario.git'
+                git branch:'master',url:'https://github.com/jmmeidnac03/ic-diccionario.git'
             }
         }
         stage('Install') {
@@ -26,7 +26,7 @@ pipeline {
     }
     post {
          always {
-          mail to: 'josedom24@josedomingo.org',
+          mail to: 'jmmedinac03@iesvjp.es',
           subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
           body: "${env.BUILD_URL} has result ${currentBuild.result}"
         }
